@@ -26,6 +26,12 @@
 - Built-in TypeScript support
 - Easy to persist state to localStorage
 - Less boilerplate than Redux
+- Excellent performance for real-time updates
+
+**Implementation Notes**:
+- Single store pattern with all game state
+- Real-time progression system with setInterval
+- Proper cleanup of intervals in store actions
 
 ### Testing: Jest + React Testing Library
 **Decision**: Use Jest with React Testing Library
@@ -45,6 +51,20 @@
 
 ## Game Architecture Decisions
 
+### Date Management: dayjs
+**Decision**: Use dayjs for all date operations instead of native Date objects
+**Rationale**:
+- Immutable date objects prevent accidental mutations
+- Consistent API for date manipulation
+- Better TypeScript support with Dayjs type
+- Smaller bundle size than moment.js
+- Cleaner date arithmetic and comparisons
+
+**Implementation**:
+- All dates stored as dayjs objects in game state
+- Date comparisons use .isAfter(), .isSame() methods
+- Time calculations use .diff() for precise intervals
+
 ### State Structure: Single Store
 **Decision**: Use one main Zustand store for all game state
 **Rationale**:
@@ -52,6 +72,11 @@
 - Easier to persist entire game state
 - Better performance for frequent updates
 - Centralized state management
+
+**Implementation**:
+- Real-time progression with 1-second intervals
+- Automatic cleanup of intervals on store actions
+- State validation and bounds checking built-in
 
 ### Component Architecture: Feature-Based
 **Decision**: Organize components by feature (ui/, game/, layout/)
@@ -61,13 +86,20 @@
 - Scales well as features are added
 - Follows React best practices
 
-### Testing Strategy: Data-TestId Selectors
-**Decision**: Use data-testid attributes for element selection
+### Testing Strategy: Comprehensive Coverage
+**Decision**: Use data-testid attributes for element selection with comprehensive test patterns
 **Rationale**:
 - More reliable than text-based selectors
 - Doesn't break when copy changes
 - Explicit testing contract
 - Recommended by React Testing Library
+
+**Implementation**:
+- Global Math.random mock in setupTests.ts for predictable results
+- No conditional assertions - make conditions into assertions
+- Explicit expectations instead of toBeCloseTo
+- Proper cleanup of intervals and timers in tests
+- 100% coverage of implemented functionality
 
 ## Configuration Decisions
 
@@ -119,6 +151,11 @@
 - Fewer bugs in production
 - Easier refactoring
 - Clear requirements definition
+
+**Enhanced npm Scripts**:
+- `npm run lint` now includes TypeScript checking (tsc --noEmit)
+- Integrated code quality pipeline
+- Fail fast on type errors and linting issues
 
 ## Future Architecture Considerations
 

@@ -50,7 +50,8 @@
 - Stores: `storeName.ts`
 
 ## Common Patterns
-- Time calculations: Always use `Date.now()` for current time
+- Time calculations: Use `dayjs` for parsing, manipulating and displaying dates.
+- Dates: prefer using `dayjs` objects for in memory state instead of converting to `Date` objects
 - Number formatting: Use `toLocaleString()` for currency display
 - State updates: Validate before updating, never mutate directly
 - Event handlers: Use arrow functions in components
@@ -76,7 +77,10 @@ jest.mock('../stores/gameStore', () => ({
 ```
 
 ## Don't Do This
+- Don't end lines with semi-colons. It goes against the .prettier.rc file
 - Don't use `getElementById` - use React refs or state
+- Don't conditionally run assertions in tests
+- Don't use the `toBeCloseTo` assertion in tests. Be explicit
 - Don't mutate props or state directly
 - Don't use `setTimeout` or `setInterval` without cleanup
 - Don't hardcode values - use constants

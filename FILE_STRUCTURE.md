@@ -20,11 +20,12 @@ vibe-coder/
 │   │   └── layout/                 # Layout components
 │   │       └── GameLayout.tsx      # (Future) Main game layout
 │   ├── stores/                     # Zustand store definitions
-│   │   ├── gameStore.ts            # (Future) Main game state store
+│   │   ├── gameStore.ts            # ✅ Main game state store (implemented)
+│   │   ├── gameStore.test.ts       # ✅ Comprehensive store tests (24 tests)
 │   │   └── uiStore.ts              # (Future) UI state store
 │   ├── types/                      # TypeScript type definitions
-│   │   ├── game.ts                 # (Future) Game-related types
-│   │   └── business.ts             # (Future) Business-related types
+│   │   ├── game.ts                 # ✅ Core game types with dayjs (implemented)
+│   │   └── business.ts             # ✅ Business calculation types (implemented)
 │   ├── utils/                      # Utility functions
 │   │   ├── gameLogic.ts            # (Future) Game calculation logic
 │   │   ├── businessGenerator.ts    # (Future) Business generation logic

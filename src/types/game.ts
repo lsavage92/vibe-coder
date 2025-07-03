@@ -1,3 +1,5 @@
+import type { Dayjs } from 'dayjs';
+
 export interface AIModel {
   id: string;
   name: string;
@@ -16,20 +18,20 @@ export interface Business {
   operatingCost: number;
   price: number;
   maus: number;
-  createdAt: Date;
+  createdAt: Dayjs;
   isActive: boolean;
 }
 
 export interface GameState {
   cash: number;
-  currentDate: Date;
-  gameStartDate: Date;
-  lastPaymentDate: Date;
-  nextPaymentDate: Date;
+  currentDate: Dayjs;
+  gameStartDate: Dayjs;
+  lastPaymentDate: Dayjs;
+  nextPaymentDate: Dayjs;
   currentAIModel: AIModel;
   businesses: Business[];
   generationCooldown: number;
-  lastGenerationTime: Date;
+  lastGenerationTime: Dayjs;
 }
 
 export interface GameConfig {
@@ -60,10 +62,10 @@ export type GameEvent =
   | { type: 'GAME_OVER'; reason: string };
 
 export interface GameError {
-  code: string;
-  message: string;
-  context?: Record<string, any>;
-  timestamp: Date;
+  code: string
+  message: string
+  context?: Record<string, unknown>
+  timestamp: Date
 }
 
 export interface BusinessGenerationError extends GameError {

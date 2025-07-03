@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint . && tsc --noEmit",
     "preview": "vite preview",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "dayjs": "^1.11.13",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "zustand": "^5.0.6"
