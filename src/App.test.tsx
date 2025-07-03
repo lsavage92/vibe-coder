@@ -4,7 +4,7 @@ import App from './App'
 describe('App', () => {
     it('renders Vibe Coder title', () => {
         render(<App />)
-        expect(screen.getByTestId('app-title')).toBeInTheDocument()
+        expect(screen.getByRole('heading', { name: /vibe coder/i })).toBeInTheDocument()
     })
 
     it('renders with correct CSS class', () => {
