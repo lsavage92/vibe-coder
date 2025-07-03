@@ -74,17 +74,21 @@ export interface BusinessGenerationError extends GameError {
   cooldownRemaining: number;
 }
 
-export enum GamePhase {
-  EARLY = 'early',
-  GROWING = 'growing',
-  SCALING = 'scaling',
-  ENDGAME = 'endgame'
-}
+export const GamePhase = {
+  EARLY: 'early',
+  GROWING: 'growing',
+  SCALING: 'scaling',
+  ENDGAME: 'endgame'
+} as const
 
-export enum VibeLevel {
-  BROKE = 0,
-  BASIC = 1,
-  COLORFUL = 2,
-  VAPORWAVE = 3,
-  PREMIUM = 4
-}
+export type GamePhase = typeof GamePhase[keyof typeof GamePhase]
+
+export const VibeLevel = {
+  BROKE: 0,
+  BASIC: 1,
+  COLORFUL: 2,
+  VAPORWAVE: 3,
+  PREMIUM: 4
+} as const
+
+export type VibeLevel = typeof VibeLevel[keyof typeof VibeLevel]

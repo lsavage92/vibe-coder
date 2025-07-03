@@ -6,6 +6,7 @@
 - Use `screen.getByRole()` for semantic elements, `screen.getByTestId()` for complex components
 - Mock Zustand stores in tests using `jest.mock()`
 - Run tests after every implementation - fix ALL failures before proceeding
+- Run `npm run build` after running tests and before considering a task complete
 
 ## Code Style & Patterns
 - Use functional components with hooks only
