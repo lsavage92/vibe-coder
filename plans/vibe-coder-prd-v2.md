@@ -295,48 +295,48 @@ interface GameConfig {
 
 ## 7. Implementation Tasks for Claude Code
 
+**Testing Requirements**: For each task, write comprehensive tests that verify all described functionality. Use Jest and React Testing Library. After implementing features, run all tests and fix any failures immediately. If linting errors occur, resolve them completely before proceeding. Re-run tests after fixes to ensure everything passes. Do not consider a task complete until all tests pass and code has no linting errors.
+
 ### Task 1: Project Foundation
 ```
-Create a new React + TypeScript project with Vite. Set up the basic folder structure with components, stores, types, and utils directories. Install Zustand for state management. Create a basic App.tsx that renders "Vibe Coder" as a placeholder.
+Create a new React + TypeScript project with Vite. Set up the basic folder structure with components, stores, types, and utils directories. Install Zustand for state management and testing dependencies (Jest, React Testing Library, @testing-library/jest-dom). Configure ESLint and Prettier. Create a basic App.tsx that renders "Vibe Coder" as a placeholder. Write tests for App component rendering. Run all tests and fix any setup issues.
 ```
 
 ### Task 2: Core Game Store
 ```
-Implement the main Zustand game store with initial state for cash ($40), current date, AI model (Sloppy Copy), and empty businesses array. Add a time progression system that updates the current date in real-time and processes business revenue/costs.
+Implement the main Zustand game store with initial state for cash ($40), current date, AI model (Sloppy Copy), and empty businesses array. Add a time progression system that updates the current date in real-time and processes business revenue/costs. Create comprehensive tests for store initialization, state updates, and time progression. Ensure all store actions work correctly and state persists as expected.
 ```
 
 ### Task 3: Business Generation
 ```
-Create a business generator that creates random businesses with usefulness, fun, and operating costs based on the current AI model quality. Implement cooldown system and failure rate mechanics. Add a generate button that respects cooldowns and shows remaining time.
+Create a business generator that creates random businesses with usefulness, fun, and operating costs based on the current AI model quality. Implement cooldown system and failure rate mechanics. Add a generate button that respects cooldowns and shows remaining time. Write tests for business generation logic, cooldown mechanics, failure rate calculations, and button states. Verify that generated businesses have correct properties based on AI model quality.
 ```
 
 ### Task 4: Business Management UI
 ```
-Create components for displaying businesses in a tabbed interface. Each business should show its stats, allow price adjustment, and have a shutdown button. Calculate and display MAUs, revenue, and profit in real-time.
+Create components for displaying businesses in a tabbed interface. Each business should show its stats, allow price adjustment, and have a shutdown button. Calculate and display MAUs, revenue, and profit in real-time. Write tests for component rendering, user interactions (price changes, shutdown), calculations accuracy, and real-time updates. Test edge cases like empty business lists and invalid price inputs.
 ```
 
 ### Task 5: AI Model System
 ```
-Implement the AI model upgrade system with the 7-tier structure. Add validation to ensure player can afford upgrades. Update generation mechanics to use current model's quality, cooldown, and failure rate.
+Implement the AI model upgrade system with the 7-tier structure. Add validation to ensure player can afford upgrades. Update generation mechanics to use current model's quality, cooldown, and failure rate. Create tests for model upgrade validation, cost checking, property updates, and integration with business generation. Verify that model changes affect generation behavior correctly.
 ```
 
 ### Task 6: Save System
 ```
-Implement localStorage save/load functionality that automatically saves game state every 10 seconds. Handle edge cases like corrupted saves and version compatibility.
+Implement localStorage save/load functionality that automatically saves game state every 10 seconds. Handle edge cases like corrupted saves and version compatibility. Write tests for save/load operations, auto-save timing, error handling with corrupted data, and state restoration accuracy. Mock localStorage for testing and verify graceful degradation when storage is unavailable.
 ```
 
 ### Task 7: Visual Evolution
 ```
-Create a vibe level system that increases based on total profit/cash. Implement dynamic styling that evolves from plain HTML to vaporwave aesthetics as the player becomes more successful.
+Create a vibe level system that increases based on total profit/cash. Implement dynamic styling that evolves from plain HTML to vaporwave aesthetics as the player becomes more successful. Write tests for vibe level calculations, style changes at different thresholds, and visual progression. Test that styling updates correctly when game state changes and verify performance of style transitions.
 ```
 
 ## 8. Success Metrics
 
 ### Core Metrics
 - **Time to First Profitable Business**: Target < 2 minutes
-- **Average Session Length**: Target 15-30 minutes
 - **Failure Rate**: Target 60% reach $1K, 30% reach $10K
-- **Retention**: Players return within 24 hours
 
 ### Balancing Targets
 - **Starting Difficulty**: Player should struggle initially but feel progression
@@ -353,10 +353,7 @@ Create a vibe level system that increases based on total profit/cash. Implement 
 - **Multiplayer**: Leaderboards or competitive elements
 
 ### Technical Improvements
-- **Cloud Save**: Sync across devices
 - **Performance**: Handle 100+ businesses efficiently
-- **Mobile App**: Native mobile version
-- **Analytics**: Player behavior tracking
 
 ---
 
