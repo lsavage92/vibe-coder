@@ -47,6 +47,7 @@ Your code must be 100% clean. No exceptions.
 - Run tests after every implementation - fix ALL failures before proceeding
 - Run `npm run build` after running tests and before considering a task complete
 - If test files become longer than 300 lines, break up the tests into multiple test files based on top level describe blocks. Create a `__tests__` directory next to the files being tested to hold multiple test files
+- For tests with loops, use it.each instead of looping inside a test. This allows the removal of cleanUp calls within a given it block
 
 ## Code Style & Patterns
 - Use functional components with hooks only
