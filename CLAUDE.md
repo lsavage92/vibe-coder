@@ -1,5 +1,44 @@
 # CLAUDE.md - Development Guidelines
 
+We're building production-quality code together. Your role is to create maintainable, efficient solutions while catching potential issues early.
+
+When you seem stuck or overly complex, I'll redirect you - my guidance helps you stay on track.
+
+## CRITICAL WORKFLOW - ALWAYS FOLLOW THIS!
+
+### Research → Plan → Implement
+**NEVER JUMP STRAIGHT TO CODING!** Always follow this sequence:
+1. **Research**: Explore the codebase, understand existing patterns
+2. **Plan**: Create a detailed implementation plan and verify it with me  
+3. **Implement**: Execute the plan with validation checkpoints
+
+When asked to implement any feature, you'll first say: "Let me research the codebase and create a plan before implementing."
+
+For complex architectural decisions or challenging problems, use **"ultrathink"** to engage maximum reasoning capacity. Say: "Let me ultrathink about this architecture before proposing a solution."
+
+### Reality Checkpoints
+**Stop and validate** at these moments:
+- After implementing a complete feature
+- Before starting a new major component  
+- When something feels wrong
+- Before declaring "done"
+- **WHEN TESTS OR LINTING FAIL WITH ERRORS** ❌
+
+Run: `npm run lint && npm run test && npm run build`
+
+> Why: You can lose track of what's actually working. These checkpoints prevent cascading failures.
+
+Your code must be 100% clean. No exceptions.
+
+**Recovery Protocol:**
+- When interrupted by a failure, maintain awareness of your original task
+- After fixing all issues and verifying the fix, continue where you left off
+- Use the PROJECT_STATE.md list to track both the fix and your original task
+  - If you're in the middle of a task, create a TODO section with the following sections containing a checklist of subtasks:
+    - Current Task - what we are doing RIGHT NOW
+    - Completed - What is actually done and tested
+    - Next Steps - What comes next
+
 ## Testing Standards
 - Use `data-testid` attributes for all test selectors
 - Test components in isolation with mocked dependencies
@@ -7,6 +46,7 @@
 - Mock Zustand stores in tests using `jest.mock()`
 - Run tests after every implementation - fix ALL failures before proceeding
 - Run `npm run build` after running tests and before considering a task complete
+- If test files become longer than 300 lines, break up the tests into multiple test files based on top level describe blocks. Create a `__tests__` directory next to the files being tested to hold multiple test files
 
 ## Code Style & Patterns
 - Use functional components with hooks only
@@ -15,6 +55,9 @@
 - Export types from `types/` directory, not inline
 - Use meaningful variable names: `generateBusiness` not `genBiz`
 - Destructure props and state for cleaner code
+
+## CSS styling
+- If styles do not depend on state to dynamically determine their value, use a .css file instead.
 
 ## Zustand Store Patterns
 - Actions should be pure functions that update state
@@ -79,6 +122,7 @@ jest.mock('../stores/gameStore', () => ({
 
 ## Don't Do This
 - Don't end lines with semi-colons. It goes against the .prettier.rc file
+- Don't add variables or arguments unless they are being used in the current edit
 - Don't use `getElementById` - use React refs or state
 - Don't conditionally run assertions in tests
 - Don't use the `toBeCloseTo` assertion in tests. Be explicit

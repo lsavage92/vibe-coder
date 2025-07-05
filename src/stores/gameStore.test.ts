@@ -414,4 +414,59 @@ describe('GameStore', () => {
       expect(updatedBusiness?.price).toBe(MAX_BUSINESS_PRICE);
     });
   });
+
+  describe('Business Quality Mechanics', () => {
+    it('should enhance business traits based on AI model quality', () => {
+      const { result } = renderHook(() => useGameStore());
+      
+      act(() => {
+        result.current.generateBusiness();
+      });
+      
+      const business = result.current.businesses[0];
+      
+      // With Sloppy Copy (20% quality), traits should be enhanced
+      // Base range: 25-75, Quality bonus: +5, Final range: 30-80
+      expect(business.usefulness).toBeGreaterThanOrEqual(30);
+      expect(business.usefulness).toBeLessThanOrEqual(80);
+      expect(business.fun).toBeGreaterThanOrEqual(30);
+      expect(business.fun).toBeLessThanOrEqual(80);
+    });
+
+    it('should calculate MAUs based on business properties and AI quality', () => {
+      const { result } = renderHook(() => useGameStore());
+      
+      act(() => {
+        result.current.generateBusiness();
+      });
+      
+      const business = result.current.businesses[0];
+      const aiQuality = result.current.currentAIModel.qualityLevel / 100;
+      
+      // Verify MAU calculation matches expected formula
+      const baseGrowthRate = (business.usefulness + business.fun) / 2;
+      const priceImpact = Math.max(0.1, 1 - (business.price / 100));
+      const expectedMAUs = Math.floor(baseGrowthRate * priceImpact * aiQuality * 10);
+      
+      expect(business.maus).toBe(expectedMAUs);
+    });
+
+    it('should update MAUs when business price changes', () => {
+      const { result } = renderHook(() => useGameStore());
+      
+      act(() => {
+        result.current.generateBusiness();
+      });
+      
+      const businessId = result.current.businesses[0].id;
+      const originalMAUs = result.current.businesses[0].maus;
+      
+      act(() => {
+        result.current.updateBusinessPrice(businessId, 50);
+      });
+      
+      const updatedBusiness = result.current.businesses.find(b => b.id === businessId);
+      expect(updatedBusiness?.maus).not.toBe(originalMAUs);
+    });
+  });
 });
