@@ -1,0 +1,14 @@
+{
+    "extends": [
+        "stylelint-config-standard"
+    ],
+    "plugins": [
+        "stylelint-prettier"
+    ],
+    "ignoreFiles": [
+        "./dist/**/*"
+    ],
+    "rules": {
+        "prettier/prettier": true
+    }
+}
